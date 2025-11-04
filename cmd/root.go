@@ -30,7 +30,6 @@ func init() {
 	// 为根命令绑定全局参数（所有子命令自动继承）
 	rootCmd.PersistentFlags().StringVarP(&keyFlag, "key", "k", "", "加解密密钥（必填）")
 	rootCmd.PersistentFlags().StringVarP(&outputFlag, "output", "o", "", "输出文件路径（必填）")
-
 	// 标记参数为必填，未传则报错
 	_ = rootCmd.MarkPersistentFlagRequired("key")
 	_ = rootCmd.MarkPersistentFlagRequired("output")

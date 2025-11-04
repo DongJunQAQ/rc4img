@@ -1,11 +1,7 @@
 package main
 
-import "fmt"
+import "rc4img/cmd"
 
 func main() {
-	a := 10
-	b := 20
-	fmt.Println(a, b)
-	a, b = b, a
-	fmt.Println(a, b)
+	cmd.Execute()
 }

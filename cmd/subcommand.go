@@ -6,12 +6,12 @@ import (
 )
 
 func init() {
-	rootCmd.AddCommand(encryptCmd) // 将加密子命令添加到根命令
-	rootCmd.AddCommand(decryptCmd) // 将解密子命令添加到根命令
+	// 将加密子命令添加到根命令
+	rootCmd.AddCommand(encryptCmd)
+	rootCmd.AddCommand(decryptCmd)
 }
 
-// encryptCmd 定义加密子命令
-var encryptCmd = &cobra.Command{
+var encryptCmd = &cobra.Command{ //定义加密子命令
 	Use:   "encrypt [input-file-path]",
 	Short: "使用RC4算法加密文件",
 	Long:  `将指定图片文件通过RC4算法加密，输出为不可直接查看的文件（需用decrypt子命令解密）`,
@@ -21,8 +21,7 @@ var encryptCmd = &cobra.Command{
 	},
 }
 
-// decryptCmd 定义解密子命令
-var decryptCmd = &cobra.Command{
+var decryptCmd = &cobra.Command{ //定义解密子命令
 	Use:   "decrypt [input-file-path]",
 	Short: "使用RC4算法解密文件",
 	Long:  `将通过encrypt子命令加密的文件解密，恢复为原始可查看的图片文件（需使用加密时的相同密钥）`,

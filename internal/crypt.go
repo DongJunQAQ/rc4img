@@ -1,8 +1,6 @@
 package internal
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func ProcessCrypt(args []string, operation string, outputPath string, key string) { // 加/解密共用的处理函数
 	inputPath := args[0]

@@ -6,8 +6,8 @@ import (
 )
 
 func init() {
-	RootCmd.AddCommand(encryptCmd) // 将加密子命令添加到根命令
-	RootCmd.AddCommand(decryptCmd) // 将解密子命令添加到根命令
+	rootCmd.AddCommand(encryptCmd) // 将加密子命令添加到根命令
+	rootCmd.AddCommand(decryptCmd) // 将解密子命令添加到根命令
 }
 
 // encryptCmd 定义加密子命令

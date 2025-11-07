@@ -1,5 +1,5 @@
 # 定义项目名称
-BINARY_NAME := rc4ctr
+BINARY_NAME := rc4ctl
 # 定义编译输出目录
 BUILD_DIR := ./bin
 # 定义源代码入口

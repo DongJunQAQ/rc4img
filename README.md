@@ -6,7 +6,10 @@
 - 编译项目生成二进制文件：
 
 ```shell
-make
+[root@ecs-1622 rc4ctl-master]# make
+Start compiling this project on the  platform...
+go build -o ./bin/rc4ctr ./main.go
+Compilation completed: ./bin/rc4ctr
 ```
 
 执行完此命令后会在./bin目录下生成名为rc4ctl的可执行文件；
@@ -21,7 +24,10 @@ rc4ctl version 0.1.0
 - 清除编译产物：
 
 ```shell
-make clean
+[root@ecs-1622 rc4ctl-master]# make clean
+Cleaning compilation artifacts...
+rm -rf ./bin
+Cleanup completed
 ```
 
 

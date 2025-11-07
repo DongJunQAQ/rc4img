@@ -1,29 +1,29 @@
 package internal
 
 func rc4Crypt(data []byte, K []byte) []byte { //RC4加解密核心函数（加密和解密逻辑一致）
-	S := make([]int, 256)
-	T := make([]int, 256)
-	keyLen := len(K)
-	// 初始化S盒和T盒
+	// 第一步：初始化S盒和T盒（RC4算法的核心数据结构，均为256长度的int数组）
+	S := make([]int, 256) //S盒：用于生成伪随机密钥流的置换表
+	T := make([]int, 256) //T盒：辅助S盒初始化的临时数组，由密钥派生
+	keyLen := len(K)      //获取密钥长度
 	for i := 0; i <= 255; i++ {
-		S[i] = i
-		T[i] = int(K[i%keyLen])
+		S[i] = i                //S盒初始化为0-255的连续整数
+		T[i] = int(K[i%keyLen]) //T盒的值由密钥循环填充（存储循环的密钥），用密钥的每个字节依次赋值，超出密钥长度后从头循环
 	}
-	// 置换S盒
-	j := 0
+	// 第二步：置换S盒（打乱初始顺序，使S盒与密钥关联）
+	j := 0 // 用于记录交换位置的临时变量
 	for i := 0; i <= 255; i++ {
-		j = (j + S[i] + T[i]) % 256
-		S[i], S[j] = S[j], S[i] //交换二者的值
+		j = (j + S[i] + T[i]) % 256 // 计算下一个交换位置j：基于当前j、S[i]、T[i]的值，取模256确保在0-255范围内
+		S[i], S[j] = S[j], S[i]     //交换S[i]和S[j]的值，完成一次置换
 	}
-	// 生成密钥流并异或
-	result := make([]byte, len(data))
-	i, j := 0, 0
-	for k := 0; k < len(data); k++ {
-		i = (i + 1) % 256
-		j = (j + S[i]) % 256
-		S[i], S[j] = S[j], S[i]
-		t := (S[i] + S[j]) % 256
-		result[k] = data[k] ^ byte(S[t]) //^表示按位异或运算
+	// 第三步：生成密钥流并与原始数据异或（核心加密/解密步骤）
+	result := make([]byte, len(data)) // 创建存储结果的字节数组（长度与原始数据一致）
+	i, j := 0, 0                      // 重置i和j，用于生成密钥流
+	for k := 0; k < len(data); k++ {  // 遍历每一个字节的原始数据
+		i = (i + 1) % 256                // 更新i：每次+1后取模256
+		j = (j + S[i]) % 256             // 更新j：基于当前j和S[i]的值，取模256
+		S[i], S[j] = S[j], S[i]          // 再次交换S[i]和S[j]，进一步打乱S盒
+		t := (S[i] + S[j]) % 256         //计算密钥流的当前字节索引t
+		result[k] = data[k] ^ byte(S[t]) //原始数据字节与S[t]（密钥流字节）进行按位异或，^表示按位异或运算
 	}
 	return result
 }

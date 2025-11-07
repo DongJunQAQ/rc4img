@@ -8,8 +8,8 @@
 ```shell
 [root@ecs-1622 rc4ctl-master]# make
 Start compiling this project on the  platform...
-go build -o ./bin/rc4ctr ./main.go
-Compilation completed: ./bin/rc4ctr
+go build -o ./bin/rc4ctl ./main.go
+Compilation completed: ./bin/rc4ctl
 ```
 
 执行完此命令后会在./bin目录下生成名为rc4ctl的可执行文件；
@@ -17,7 +17,7 @@ Compilation completed: ./bin/rc4ctr
 - 验证是否安装成功：
 
 ```
-[root@ecs-1622 rc4ctl-master]# cd ./bin/ && ./rc4ctr -v
+[root@ecs-1622 rc4ctl-master]# cd ./bin/ && ./rc4ctl -v
 rc4ctl version 0.1.0
 ```
 
@@ -37,7 +37,7 @@ Cleanup completed
 - 加密图片：
 
 ```
-[root@ecs-1622 bin]# ./rc4ctr encrypt ../image/demo.jpg -o cipher.bin -k 1234
+[root@ecs-1622 bin]# ./rc4ctl encrypt ../image/demo.jpg -o cipher.bin -k 1234
 加密成功！
 输入：../image/demo.jpg
 输出：cipher.bin
@@ -46,7 +46,7 @@ Cleanup completed
 - 解密图片：
 
 ```
-[root@ecs-1622 bin]# ./rc4ctr decrypt cipher.bin -o plaintext.jpg -k 1234
+[root@ecs-1622 bin]# ./rc4ctl decrypt cipher.bin -o plaintext.jpg -k 1234
 解密成功！
 输入：cipher.bin
 输出：plaintext.jpg
@@ -57,7 +57,7 @@ Cleanup completed
 ## 使用指南：
 
 ```shell
-[root@ecs-1622 bin]# ./rc4ctr -h
+[root@ecs-1622 bin]# ./rc4ctl -h
 基于RC4对称加密算法，对JPG/PNG/GIF等图片文件进行加密和解密，加密解密使用相同密钥
 
 Usage:
@@ -81,7 +81,7 @@ Use "rc4ctl [command] --help" for more information about a command.
 子命令用法：
 
 ```shell
-[root@ecs-1622 bin]# ./rc4ctr encrypt -h
+[root@ecs-1622 bin]# ./rc4ctl encrypt -h
 将指定图片文件通过RC4算法加密，输出为不可直接查看的文件（需用decrypt子命令解密）
 
 Usage:

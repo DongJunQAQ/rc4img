@@ -1,4 +1,4 @@
-module rc4img
+module rc4ctl
 
 go 1.23.7
 

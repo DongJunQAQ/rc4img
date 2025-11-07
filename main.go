@@ -1,6 +1,6 @@
 package main
 
-import "rc4img/cmd"
+import "rc4ctl/cmd"
 
 func main() {
 	cmd.Execute()

@@ -16,20 +16,20 @@ else
     RMDIR := rm -rf $(BUILD_DIR)
 endif
 
-## build: 编译项目
+## build: Compile Project
 build:
-	@echo "开始在$(OS)平台上编译此项目..."
+	@echo "Start compiling this project on the $(OS) platform..."
 	go build -o $(BINARY_PATH) $(MAIN_PACKAGE)
-	@echo "编译完成：$(BINARY_PATH)"
+	@echo "Compilation completed: $(BINARY_PATH)"
 
-## clean: 清理编译产物
+## clean: Clean Artifacts
 clean:
-	@echo "清理编译产物..."
+	@echo "Cleaning compilation artifacts..."
 	$(RMDIR)
-	@echo "清理完成"
+	@echo "Cleanup completed"
 
-## help: 展示帮助信息
+## help: Print Help Info
 help: Makefile
-	@echo -e "\nUsage: make <TARGETS> <OPTIONS> ...\n\nTargets:\n"
+	@echo -e "\nUsage: make <TARGETS> \n\nTargets:\n"
 	@sed -n 's/^##//p' $< | column -t -s ':' | sed -e 's/^/ /'
 	@echo "$$USAGE_OPTIONS"

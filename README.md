@@ -106,3 +106,5 @@ Global Flags:
 ```
 
  执行完此命令后重新进入bash即可享受命令自动补全功能；
+ 
+ 如果下载的是Release文件则需要先将rc4ctl-linux-amd64重命名为rc4ctl之后再执行以上步骤。
